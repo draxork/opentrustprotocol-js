@@ -1,5 +1,7 @@
 # OpenTrust Protocol JavaScript SDK
 
+> 🚀 **CI/CD Active**: Automated testing, linting, security audits, and npm publishing
+
 [![npm version](https://img.shields.io/npm/v/opentrustprotocol.svg)](https://www.npmjs.com/package/opentrustprotocol)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
