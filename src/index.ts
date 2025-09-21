@@ -25,3 +25,5 @@ export {
 
 // Package version
 export const VERSION = '1.0.2';
+
+// CI/CD Test - Sun Sep 21 10:57:57 -03 2025
