@@ -1,7 +1,6 @@
 {
   "name": "opentrustprotocol",
-  "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The official JavaScript SDK for the OpenTrust Protocol, the open standard for auditable trust.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -35,10 +34,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opentrustprotocol/opentrustprotocol-js.git"
+    "url": "https://github.com/draxork/opentrustprotocol-js.git"
   },
   "bugs": {
-    "url": "https://github.com/opentrustprotocol/opentrustprotocol-js/issues"
+    "url": "https://github.com/draxork/opentrustprotocol-js/issues"
   },
   "homepage": "https://opentrustprotocol.com",
   "devDependencies": {
