@@ -1,4 +1,4 @@
-name: CI
+name: CI - JavaScript SDK
 
 on:
   push:
