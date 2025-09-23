@@ -1,7 +1,7 @@
 {
   "name": "opentrustprotocol",
-  "version": "2.0.0",
-  "description": "🟨 Official JavaScript SDK for OpenTrust Protocol - The mathematical embodiment of trust itself. Features neutrosophic judgments, fusion operators, OTP mappers, and REVOLUTIONARY Conformance Seals with mathematical proof of conformance.",
+  "version": "3.0.0",
+  "description": "🟨 Official JavaScript SDK for OpenTrust Protocol - The mathematical embodiment of trust itself. Features neutrosophic judgments, fusion operators, OTP mappers, REVOLUTIONARY Conformance Seals, and Performance Oracle with Circle of Trust for real-world outcome tracking.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,10 @@
     "conformance-seal",
     "cryptography",
     "proof",
-    "mathematical-proof"
+    "mathematical-proof",
+    "performance-oracle",
+    "circle-of-trust",
+    "outcome-tracking"
   ],
   "author": "OpenTrust Protocol Team <contact@opentrustprotocol.com>",
   "license": "MIT",

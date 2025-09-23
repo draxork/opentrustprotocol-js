@@ -93,7 +93,7 @@ describe('Fusion Operators', () => {
 
       const result = conflict_aware_weighted_average(judgments, weights);
 
-      expect(result.provenance_chain.length).toBe(2); // Original + fusion entry
+      expect(result.provenance_chain.length).toBe(3); // Original + fusion entry + judgment_id entry
       const fusionEntry = result.provenance_chain[1]!;
       expect(fusionEntry.source_id).toBe('otp-cawa-v1.1');
       expect(fusionEntry.metadata?.['operator']).toBe('conflict_aware_weighted_average');
@@ -132,7 +132,7 @@ describe('Fusion Operators', () => {
 
       const result = optimistic_fusion(judgments);
 
-      expect(result.provenance_chain.length).toBe(2);
+      expect(result.provenance_chain.length).toBe(3); // Original + fusion entry + judgment_id entry
       const fusionEntry = result.provenance_chain[1]!;
       expect(fusionEntry.source_id).toBe('otp-optimistic-v1.1');
     });
@@ -174,7 +174,7 @@ describe('Fusion Operators', () => {
 
       const result = pessimistic_fusion(judgments);
 
-      expect(result.provenance_chain.length).toBe(2);
+      expect(result.provenance_chain.length).toBe(3); // Original + fusion entry + judgment_id entry
       const fusionEntry = result.provenance_chain[1]!;
       expect(fusionEntry.source_id).toBe('otp-pessimistic-v1.1');
     });
