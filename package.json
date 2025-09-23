@@ -1,7 +1,7 @@
 {
   "name": "opentrustprotocol",
-  "version": "1.0.2",
-  "description": "The official JavaScript SDK for the OpenTrust Protocol, the open standard for auditable trust.",
+  "version": "2.0.0",
+  "description": "🟨 Official JavaScript SDK for OpenTrust Protocol - The mathematical embodiment of trust itself. Features neutrosophic judgments, fusion operators, OTP mappers, and REVOLUTIONARY Conformance Seals with mathematical proof of conformance.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -28,7 +28,11 @@
     "audit",
     "ai",
     "otp",
-    "open-trust-protocol"
+    "open-trust-protocol",
+    "conformance-seal",
+    "cryptography",
+    "proof",
+    "mathematical-proof"
   ],
   "author": "OpenTrust Protocol Team <contact@opentrustprotocol.com>",
   "license": "MIT",

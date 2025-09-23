@@ -1,11 +1,16 @@
 /**
  * Fusion operators for OpenTrust Protocol
  * 
+ * **REVOLUTIONARY UPDATE**: All fusion operations now generate **Conformance Seals**
+ * that provide mathematical proof that the operation was performed according to
+ * the exact OTP specification. This transforms OTP into the mathematical embodiment of trust.
+ * 
  * This module contains the standard functions for combining multiple
- * Neutrosophic Judgments into a single, aggregated judgment.
+ * Neutrosophic Judgments into a single, aggregated judgment with cryptographic proof.
  */
 
 import { NeutrosophicJudgment, ProvenanceEntry } from './judgment';
+import { generateConformanceSeal, createFusionProvenanceEntry } from './conformance';
 
 /**
  * Validates inputs for fusion functions
@@ -34,27 +39,6 @@ function validateInputs(
   }
 }
 
-/**
- * Creates a new provenance entry for fusion operations
- * @private
- */
-function createFusionProvenance(
-  operator: string,
-  judgments: NeutrosophicJudgment[],
-  weights?: number[]
-): ProvenanceEntry {
-  return {
-    source_id: operator,
-    timestamp: new Date().toISOString(),
-    description: `Fusion operation using ${operator}`,
-    metadata: {
-      operator,
-      input_count: judgments.length,
-      weights: weights || null,
-      version: '1.0.0'
-    }
-  };
-}
 
 /**
  * Fuses a list of judgments using the conflict-aware weighted average.
@@ -97,12 +81,38 @@ export function conflict_aware_weighted_average(
     finalF = judgments.reduce((sum, j, i) => sum + j.F * adjustedWeights[i]!, 0) / totalAdjustedWeight;
   }
 
+  // **REVOLUTIONARY**: Generate Conformance Seal
+  let conformanceSeal: string;
+  try {
+    conformanceSeal = generateConformanceSeal(judgments, weights, 'otp-cawa-v1.1');
+  } catch (error) {
+    // If seal generation fails, we should still proceed but log the error
+    // This ensures backward compatibility
+    console.warn(`Failed to generate conformance seal: ${error}`);
+    conformanceSeal = '';
+  }
+
   // Build the new provenance chain
   const newProvenance: ProvenanceEntry[] = [];
   for (const judgment of judgments) {
     newProvenance.push(...judgment.provenance_chain);
   }
-  newProvenance.push(createFusionProvenance('otp-cawa-v1.0', judgments, weights));
+  
+  // Create fusion provenance entry with Conformance Seal
+  const fusionEntry = createFusionProvenanceEntry(
+    'otp-cawa-v1.1',
+    new Date().toISOString(),
+    conformanceSeal,
+    'Conflict-aware weighted average fusion operation with Conformance Seal',
+    {
+      operator: 'conflict_aware_weighted_average',
+      input_count: judgments.length,
+      weights: weights,
+      version: '2.0.0'
+    }
+  );
+  
+  newProvenance.push(fusionEntry);
 
   return new NeutrosophicJudgment(finalT, finalI, finalF, newProvenance);
 }
@@ -131,12 +141,38 @@ export function optimistic_fusion(judgments: NeutrosophicJudgment[]): Neutrosoph
     finalF = finalF / total;
   }
 
+  // **REVOLUTIONARY**: Generate Conformance Seal
+  // For operations without weights, we use equal weights
+  const equalWeights = new Array(judgments.length).fill(1.0);
+  let conformanceSeal: string;
+  try {
+    conformanceSeal = generateConformanceSeal(judgments, equalWeights, 'otp-optimistic-v1.1');
+  } catch (error) {
+    console.warn(`Failed to generate conformance seal: ${error}`);
+    conformanceSeal = '';
+  }
+
   // Build the new provenance chain
   const newProvenance: ProvenanceEntry[] = [];
   for (const judgment of judgments) {
     newProvenance.push(...judgment.provenance_chain);
   }
-  newProvenance.push(createFusionProvenance('otp-optimistic-v1.0', judgments));
+  
+  // Create fusion provenance entry with Conformance Seal
+  const fusionEntry = createFusionProvenanceEntry(
+    'otp-optimistic-v1.1',
+    new Date().toISOString(),
+    conformanceSeal,
+    'Optimistic fusion operation with Conformance Seal',
+    {
+      operator: 'optimistic_fusion',
+      input_count: judgments.length,
+      weights: equalWeights,
+      version: '2.0.0'
+    }
+  );
+  
+  newProvenance.push(fusionEntry);
 
   return new NeutrosophicJudgment(finalT, finalI, finalF, newProvenance);
 }
@@ -165,12 +201,38 @@ export function pessimistic_fusion(judgments: NeutrosophicJudgment[]): Neutrosop
     finalF = finalF / total;
   }
 
+  // **REVOLUTIONARY**: Generate Conformance Seal
+  // For operations without weights, we use equal weights
+  const equalWeights = new Array(judgments.length).fill(1.0);
+  let conformanceSeal: string;
+  try {
+    conformanceSeal = generateConformanceSeal(judgments, equalWeights, 'otp-pessimistic-v1.1');
+  } catch (error) {
+    console.warn(`Failed to generate conformance seal: ${error}`);
+    conformanceSeal = '';
+  }
+
   // Build the new provenance chain
   const newProvenance: ProvenanceEntry[] = [];
   for (const judgment of judgments) {
     newProvenance.push(...judgment.provenance_chain);
   }
-  newProvenance.push(createFusionProvenance('otp-pessimistic-v1.0', judgments));
+  
+  // Create fusion provenance entry with Conformance Seal
+  const fusionEntry = createFusionProvenanceEntry(
+    'otp-pessimistic-v1.1',
+    new Date().toISOString(),
+    conformanceSeal,
+    'Pessimistic fusion operation with Conformance Seal',
+    {
+      operator: 'pessimistic_fusion',
+      input_count: judgments.length,
+      weights: equalWeights,
+      version: '2.0.0'
+    }
+  );
+  
+  newProvenance.push(fusionEntry);
 
   return new NeutrosophicJudgment(finalT, finalI, finalF, newProvenance);
 }

@@ -95,8 +95,8 @@ describe('Fusion Operators', () => {
 
       expect(result.provenance_chain.length).toBe(2); // Original + fusion entry
       const fusionEntry = result.provenance_chain[1]!;
-      expect(fusionEntry.source_id).toBe('otp-cawa-v1.0');
-      expect(fusionEntry.metadata?.['operator']).toBe('otp-cawa-v1.0');
+      expect(fusionEntry.source_id).toBe('otp-cawa-v1.1');
+      expect(fusionEntry.metadata?.['operator']).toBe('conflict_aware_weighted_average');
     });
   });
 
@@ -134,7 +134,7 @@ describe('Fusion Operators', () => {
 
       expect(result.provenance_chain.length).toBe(2);
       const fusionEntry = result.provenance_chain[1]!;
-      expect(fusionEntry.source_id).toBe('otp-optimistic-v1.0');
+      expect(fusionEntry.source_id).toBe('otp-optimistic-v1.1');
     });
 
     it('should throw error for empty judgments', () => {
@@ -176,7 +176,7 @@ describe('Fusion Operators', () => {
 
       expect(result.provenance_chain.length).toBe(2);
       const fusionEntry = result.provenance_chain[1]!;
-      expect(fusionEntry.source_id).toBe('otp-pessimistic-v1.0');
+      expect(fusionEntry.source_id).toBe('otp-pessimistic-v1.1');
     });
 
     it('should throw error for empty judgments', () => {
